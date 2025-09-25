@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
-import MonthlyEmissionsChart from './chart/MonthlyEmissionsChart';
 import { useCompanyStore } from '@/store/companyStore';
-import YearlySourceChart from './chart/YearlySourceChart';
+import MonthlyEmissionsCard from './card/MonthlyEmissionsCard';
+import YearlySourceCard from './card/YearlySourceCard';
 
 export default function Dashboard() {
   const { companies, loading, error, fetchCompanies } = useCompanyStore();
@@ -34,10 +34,10 @@ export default function Dashboard() {
 
       {companies.map((company) => (
         <div key={company.id} className="space-y-4">
-        <hr className="border-t border-gray-medium mb-4" />
+          <hr className="border-t border-gray-medium mb-4" />
           <h3 className="text-xl font-semibold text-blue">{company.name}</h3>
-          <MonthlyEmissionsChart company={company} />
-          <YearlySourceChart company={company} />
+          <MonthlyEmissionsCard company={company} />
+          <YearlySourceCard company={company} />
         </div>
       ))}
     </div>
