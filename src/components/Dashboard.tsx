@@ -1,16 +1,27 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useCompanyStore } from '@/store/companyStore';
+import { Company } from '@/types/company';
 import MonthlyEmissionsCard from './card/MonthlyEmissionsCard';
 import YearlySourceCard from './card/YearlySourceCard';
+import DropdownMenu from './dropdown/DropdownMenu';
 
 export default function Dashboard() {
   const { companies, loading, error, fetchCompanies } = useCompanyStore();
 
+  const [selectedCompany, setSelectedCompany] = useState<Company | undefined>(
+    undefined,
+  );
+
   useEffect(() => {
     fetchCompanies();
   }, [fetchCompanies]);
+
+  useEffect(() => {
+    if (companies.length > 0 && !selectedCompany)
+      setSelectedCompany(companies[0]);
+  }, [companies, selectedCompany]);
 
   if (loading) {
     return (
@@ -30,16 +41,27 @@ export default function Dashboard() {
 
   return (
     <div className="p-4 bg-gray-light space-y-6 min-h-screen">
-      <h2 className="text-2xl font-bold mb-4">대시보드</h2>
+      <div className="flex space-x-6 items-center mb-4">
+        <h2 className="text-2xl font-bold text-center align-center">
+          대시보드
+        </h2>
+        <DropdownMenu
+          companies={companies}
+          selectedCompany={selectedCompany}
+          onSelect={setSelectedCompany}
+        />
+      </div>
 
-      {companies.map((company) => (
-        <div key={company.id} className="space-y-4">
+      {selectedCompany && (
+        <div key={selectedCompany.id} className="space-y-4">
           <hr className="border-t border-gray-medium mb-4" />
-          <h3 className="text-xl font-semibold text-blue">{company.name}</h3>
-          <MonthlyEmissionsCard company={company} />
-          <YearlySourceCard company={company} />
+          <h3 className="text-xl font-semibold text-blue">
+            {selectedCompany.name}
+          </h3>
+          <MonthlyEmissionsCard company={selectedCompany} />
+          <YearlySourceCard company={selectedCompany} />
         </div>
-      ))}
+      )}
     </div>
   );
 }
