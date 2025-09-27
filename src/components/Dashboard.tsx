@@ -14,6 +14,8 @@ import {
   getYearlyTotal,
   getTopSource,
 } from '@/lib/emissionsCalc';
+import Loading from './LoadingOverlay';
+import Error from './ErrorOverlay';
 
 export default function Dashboard() {
   const { companies, loading, error, fetchCompanies } = useCompanyStore();
@@ -32,19 +34,11 @@ export default function Dashboard() {
   }, [companies, selectedCompany]);
 
   if (loading) {
-    return (
-      <div className="p-4 h-full flex items-center justify-center bg-gray-100/50">
-        <div className="text-lg font-medium">로딩 중...</div>
-      </div>
-    );
+    return <Loading />
   }
 
   if (error) {
-    return (
-      <div className="p-4 h-full flex items-center justify-center bg-gray-100/50">
-        <div className="text-lg text-red-500 font-medium">{error}</div>
-      </div>
-    );
+    return <Error error={error} />
   }
 
   return (
