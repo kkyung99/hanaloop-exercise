@@ -7,8 +7,8 @@ interface YearlySourceCardProps {
 }
 
 export default function YearlySourceCard({ company }: YearlySourceCardProps) {
-    const yearlyData = calcYearlySourceData(company);
-    const recentYears = getRecentYears(company);
+  const yearlyData = calcYearlySourceData(company);
+  const recentYears = getRecentYears(company);
 
   const sourceColorMap: Record<string, string> = {
     diesel: '#82ca9d',
@@ -17,9 +17,13 @@ export default function YearlySourceCard({ company }: YearlySourceCardProps) {
   };
 
   return (
-    <div className="w-full h-96 bg-white rounded-lg p-4 shadow-sm">
+    <div
+      className="w-full h-96 bg-white rounded-lg p-4"
+      style={{ boxShadow: '0 3px 7px rgba(0,0,0,0.25)' }}
+    >
       <h3 className="text-md font-semibold mb-3">
-        {recentYears[0]} ~ {recentYears[recentYears.length - 1]}년 연료별 배출량 비교
+        {recentYears[0]} ~ {recentYears[recentYears.length - 1]}년 연료별 배출량
+        비교
       </h3>
       <YearlySourceChart
         yearlyData={yearlyData}

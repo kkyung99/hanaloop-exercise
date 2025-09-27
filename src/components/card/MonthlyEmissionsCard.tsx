@@ -13,7 +13,7 @@ export default function MonthlyEmissionCard({
   const recentYears = getRecentYears(company);
 
   return (
-    <div className="w-full h-96 bg-white rounded-lg p-4 shadow-sm">
+    <div className="w-full h-96 bg-white rounded-lg p-4" style={{ boxShadow: '0 3px 7px rgba(0,0,0,0.25)' }}>
       <h3 className="text-md font-semibold mb-3">
         {recentYears[0]}년 ~ {recentYears[recentYears.length - 1]}년 월별 총
         배출량 비교
