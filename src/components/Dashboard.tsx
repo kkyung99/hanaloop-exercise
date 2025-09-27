@@ -49,7 +49,7 @@ export default function Dashboard() {
 
   return (
     <div className="p-4 bg-gray-light space-y-6 min-h-screen">
-      <div className="flex space-x-6 items-center mb-4">
+      <div className="flex space-x-3 items-center mb-4">
         <label className="text-lg font-medium text-gray-dark/50">회사 선택</label>
         <DropdownMenu
           companies={companies}

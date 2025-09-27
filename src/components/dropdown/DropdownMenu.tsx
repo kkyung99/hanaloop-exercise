@@ -1,3 +1,5 @@
+'use client';
+
 import { Company } from '@/types/company';
 import { useState, useRef, useEffect } from 'react';
 
@@ -33,18 +35,12 @@ export default function DropdownMenu({
   }, []);
 
   return (
-    <div className="relative w-40" ref={dropdownRef}>
+    <div className="relative w-36" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="cursor-pointer w-full bg-white border border-gray-medium rounded-md px-4 py-2 text-left flex justify-between items-center shadow-sm"
+        className={`w-full px-4 py-1 text-left rounded-md border transition-colors ${isOpen ? 'border-blue-light bg-blue-50' : 'border-gray-medium bg-white'} cursor-pointer hover:border-blue-light hover:bg-blue-50`}
       >
-        <span className="text-gray-dark/50">{selectedCompany?.name}</span>
-
-        <span
-          className={`text-gray-dark/50 ml-2 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-        >
-          ▼
-        </span>
+        {selectedCompany?.name}
       </button>
       {isOpen && (
         <ul className="absolute top-full left-0 right-0 bg-white border border-gray-medium rounded-md mt-1 shadow-lg z-10">
