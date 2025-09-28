@@ -38,17 +38,17 @@ export default function DropdownMenu({
     <div className="relative w-36" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full px-4 py-1 text-left rounded-md border transition-colors ${isOpen ? 'border-blue-light bg-blue-50' : 'border-gray-medium bg-white'} cursor-pointer hover:border-blue-light hover:bg-blue-50`}
+        className={`w-full px-4 py-1 text-left rounded-md border transition-colors ${isOpen ? 'border-blue-300 bg-blue-50' : 'border-gray-300 bg-white'} cursor-pointer hover:border-blue-300 hover:bg-blue-50`}
       >
         {selectedCompany?.name}
       </button>
       {isOpen && (
-        <ul className="absolute top-full left-0 right-0 bg-white border border-gray-medium rounded-md mt-1 shadow-lg z-10">
+        <ul className="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-md mt-1 shadow-lg z-10">
           {companies.map((company) => (
             <li key={company.id}>
               <button
                 onClick={() => handleSelect(company)}
-                className="w-full text-left px-4 py-2 hover:bg-blue-light/50 cursor-pointer"
+                className="w-full text-left px-4 py-2 hover:bg-blue-100 cursor-pointer"
               >
                 {company.name}
               </button>

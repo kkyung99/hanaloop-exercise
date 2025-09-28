@@ -14,8 +14,8 @@ import {
   getYearlyTotal,
   getTopSource,
 } from '@/lib/emissionsCalc';
-import Loading from './LoadingOverlay';
-import Error from './ErrorOverlay';
+import LoadingOverlay from './LoadingOverlay';
+import ErrorOverlay from './ErrorOverlay';
 
 export default function Dashboard() {
   const { companies, loading, error, fetchCompanies } = useCompanyStore();
@@ -34,17 +34,17 @@ export default function Dashboard() {
   }, [companies, selectedCompany]);
 
   if (loading) {
-    return <Loading />
+    return <LoadingOverlay />;
   }
 
   if (error) {
-    return <Error error={error} />
+    return <ErrorOverlay error={error} />;
   }
 
   return (
-    <div className="p-4 bg-gray-light space-y-6 min-h-screen">
+    <div className="p-4 bg-gray-50 space-y-6 min-h-screen">
       <div className="flex space-x-3 items-center mb-4">
-        <label className="text-lg font-medium text-gray-dark/50">회사 선택</label>
+        <label className="text-lg font-medium text-gray-500">회사 선택</label>
         <DropdownMenu
           companies={companies}
           selectedCompany={selectedCompany}
@@ -54,15 +54,15 @@ export default function Dashboard() {
 
       {selectedCompany && (
         <div key={selectedCompany.id} className="space-y-4">
-          <hr className="border-t border-gray-medium mb-4" />
-          <h3 className="text-3xl font-semibold text-blue">
+          <hr className="border-t border-gray-300 mb-4" />
+          <h3 className="text-3xl font-semibold text-blue-600">
             {selectedCompany.name}
           </h3>
           <div className="mb-2 text-gray-500/80 text-sm pl-1">
             {getLatestMonth(selectedCompany)} 기준
           </div>
 
-          <div className="grid grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <KPICard
               title="이번 달 총 배출량"
               value={`${getCurrentMonthTotal(selectedCompany)}톤`}

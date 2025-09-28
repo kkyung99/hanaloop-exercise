@@ -43,7 +43,7 @@ export default function MonthlyEmissionsChart({
             key={year}
             dataKey={year}
             name={`${year}년`}
-            fill={i === 0 ? '#f6c23e' : '#57a6ff'}
+            fill={i === 0 ? '#3b82f6' : '#10b981'}
           />
         ))}
       </BarChart>

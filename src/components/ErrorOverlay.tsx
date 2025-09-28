@@ -6,7 +6,7 @@ interface ErrorProps {
 
 export default function ErrorOverlay({ error }: ErrorProps) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray/80 z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-500/80 z-50">
       <div className="bg-red-50 border border-red-200 rounded-xl p-8 max-w-md w-full text-center shadow-lg">
         <h2 className="text-2xl font-bold mb-3 text-red-600">오류 발생</h2>
         <p className="mb-6">{error}</p>

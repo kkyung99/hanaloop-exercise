@@ -38,7 +38,7 @@ export default function KPICard({
       overflow-hidden
     `}
     >
-      <h4 className="text-lg font-semibold text-gray-dark/80 mb-2">{title}</h4>
+      <h4 className="text-lg font-semibold text-gray-800 mb-2">{title}</h4>
 
       <div className="text-3xl font-bold text-black flex justify-end select-none break-words">
         {change ? (

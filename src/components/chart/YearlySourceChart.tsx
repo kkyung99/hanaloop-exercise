@@ -18,12 +18,11 @@ interface YearlySourceChartProps {
 
 export default function YearlySourceChart({
   yearlyData,
-  sourceColorMap,
 }: YearlySourceChartProps) {
   return (
-    <div className="flex justify-around items-center h-full">
+    <div className="flex flex-col sm:flex-row justify-around items-center h-full">
       {yearlyData.map((yearItem) => (
-        <div key={yearItem.year} className="w-1/2 h-full">
+        <div key={yearItem.year} className="w-full sm:w-1/2 h-full">
           <h4 className="text-sm font-semibold mb-2 text-center">
             {yearItem.year}년
           </h4>
@@ -41,7 +40,15 @@ export default function YearlySourceChart({
                 {yearItem.sources.map((entry) => (
                   <Cell
                     key={entry.name}
-                    fill={sourceColorMap[entry.name] ?? 'var(--color-gray)'}
+                    fill={
+                      entry.name === 'gasoline'
+                        ? '#3b82f6'
+                        : entry.name === 'diesel'
+                          ? '#10b981'
+                          : entry.name === 'lpg'
+                            ? '#f59e0b'
+                            : '#6b7280'
+                    }
                   />
                 ))}
               </Pie>
